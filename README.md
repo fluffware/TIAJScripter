@@ -1,6 +1,5 @@
-TIAJScripter
-Enables scripting of TIA Portal functions fron Javascript using the Openness API.
-Currently it's mainly gear towards manipulating Unified HMIs.
+TIAJScripter enables scripting of TIA Portal functions from Javascript using the Openness API.
+Currently it's mainly geared towards manipulating Unified HMIs.
 In many cases it's just a one-to-one mapping of the C# API to Javascript, but there are a few differences.
 
 When a script is started there is a predefined object named 'TIA'. It has the following members:
