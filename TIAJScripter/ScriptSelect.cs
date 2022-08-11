@@ -375,6 +375,31 @@ namespace TIAJScripter
             DisconnectTia(sender, e);
         }
 
-      
+        private void scriptFileEntry_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void scriptFileEntry_DragDrop(object sender, DragEventArgs e)
+        {
+            var drop = e.Data.GetData(DataFormats.FileDrop);
+            if (drop is string[] paths)
+            {
+                if (paths.Count() == 1)
+                {
+                    scriptFileEntry.Text = paths[0];
+                }
+            }
+
+        }
+
+        private void run_button_DragDrop(object sender, DragEventArgs e)
+        {
+            scriptFileEntry_DragDrop(sender, e);
+            run_button_Click(sender, null);
+        }
     }
 }
