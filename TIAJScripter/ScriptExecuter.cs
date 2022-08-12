@@ -48,9 +48,12 @@ namespace TIAJScripter
         }
         private void ConsoleLog(object msg)
         {
-            SendResult(new ConsoleMessage { message = msg.ToString() });
+            SendResult(new ConsoleMessage {type = ConsoleMessageType.Print, message = msg.ToString() });
         }
-
+        private void ConsoleError(object msg)
+        {
+            SendResult(new ConsoleMessage { type = ConsoleMessageType.Error, message = msg.ToString() });
+        }
         private static ITypeConverter TypeConverterFactory(Engine engine)
         {
             return new OpenessExt.ConvertType(new DefaultTypeConverter(engine));
@@ -98,10 +101,21 @@ namespace TIAJScripter
             StreamReader reader = new StreamReader(script_file);
             string script = reader.ReadToEnd();
             reader.Close();
+            try
+            {
+                js_engine.AddModule(script_file, script);
+                js_engine.ImportModule(script_file);
+            }
+            catch (EngineeringTargetInvocationException ex)
+            {
 
-            js_engine.AddModule(script_file, script);
-            js_engine.ImportModule(script_file);
-            //js_engine.Execute(script);
+                ConsoleError("TIA failure:\n" + ex.ToString() + "\n\n");
+            }
+            catch (Exception ex)
+            {
+                ConsoleError("Failed to execute script:\n" + ex.ToString() + "\n\n");
+            }
+
             return null;
         }
 
@@ -125,8 +139,15 @@ namespace TIAJScripter
             cancel?.Cancel();
             cancel = null;
         }
+
+        enum ConsoleMessageType
+        {
+            Print,
+            Error
+        }
         struct ConsoleMessage
         {
+            public ConsoleMessageType type;
             public string message;
         }
         // Called in the SynchronizationContext that called TIAAsyncWrapper.Run as a result of calling SendResult
@@ -134,7 +155,15 @@ namespace TIAJScripter
         {
             if (result is ConsoleMessage msg)
             {
-                console.Print(msg.message.ToString());
+                switch (msg.type)
+                {
+                    case ConsoleMessageType.Print:
+                        console.Print(msg.message.ToString());
+                        break;
+                    case ConsoleMessageType.Error:
+                        console.Error(msg.message.ToString());
+                        break;
+                }
             }
         }
     }
