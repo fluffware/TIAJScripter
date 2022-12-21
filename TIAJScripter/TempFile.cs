@@ -38,7 +38,7 @@ namespace TIAEJScripter
         }
         static public FileInfo File(string basename, string ext)
         {
-            FileInfo file = null;
+            FileInfo file;
             Random rnd = new Random();
             int tries = 0;
             while (true)

@@ -80,8 +80,8 @@ namespace TIAJScripter
         Task task = null;
 
         protected bool exiting = false;
-        AutoResetEvent next_operation = new AutoResetEvent(true);
-        AutoResetEvent start_operation = new AutoResetEvent(false);
+        readonly AutoResetEvent next_operation = new AutoResetEvent(true);
+        readonly AutoResetEvent start_operation = new AutoResetEvent(false);
 
         Thread thread;
         public TIAAsyncWrapper()
@@ -217,10 +217,12 @@ namespace TIAJScripter
 
         public object RunSync(SyncOp cb, object state)
         {
-            SyncTask task = new SyncTask();
-            task.cb = cb;
-            task.state = state;
-            task.caller_context = new SynchronizationContext();
+            SyncTask task = new SyncTask
+            {
+                cb = cb,
+                state = state,
+                caller_context = new SynchronizationContext()
+            };
 
             next_operation.WaitOne();
             this.task = task;

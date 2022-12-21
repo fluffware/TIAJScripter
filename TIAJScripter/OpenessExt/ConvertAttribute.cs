@@ -21,7 +21,10 @@ namespace OpenessExt
                 PropertyInfo prop = item.GetType().GetProperty(attr.Key);
                 if (prop == null)
                 {
-                    converted.Add(attr.Key, attr.Value);
+                    PropertyInfo[] properties = item.GetType().GetProperties();
+                    string prop_names = string.Join(", ", properties.Select(p => p.Name));
+                    
+                    throw new Exception("No attribute matching " + attr.Key + ", try one of "+prop_names);
                 }
                 else
                 {

@@ -136,7 +136,7 @@
             this.btn_connect.TabIndex = 0;
             this.btn_connect.Text = "Connect";
             this.btn_connect.UseVisualStyleBackColor = true;
-            this.btn_connect.Click += new System.EventHandler(this.btn_connect_Click);
+            this.btn_connect.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
             // btn_disconnect
             // 
@@ -146,7 +146,7 @@
             this.btn_disconnect.TabIndex = 1;
             this.btn_disconnect.Text = "Disconnect";
             this.btn_disconnect.UseVisualStyleBackColor = true;
-            this.btn_disconnect.Click += new System.EventHandler(this.btn_disconnect_Click);
+            this.btn_disconnect.Click += new System.EventHandler(this.DisconnectButton_Click);
             // 
             // projectTreeView
             // 
@@ -216,8 +216,8 @@
             this.scriptFileEntry.Name = "scriptFileEntry";
             this.scriptFileEntry.Size = new System.Drawing.Size(444, 20);
             this.scriptFileEntry.TabIndex = 0;
-            this.scriptFileEntry.DragDrop += new System.Windows.Forms.DragEventHandler(this.scriptFileEntry_DragDrop);
-            this.scriptFileEntry.DragEnter += new System.Windows.Forms.DragEventHandler(this.scriptFileEntry_DragEnter);
+            this.scriptFileEntry.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScriptFileEntry_DragDrop);
+            this.scriptFileEntry.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScriptFileEntry_DragEnter);
             // 
             // browse_button
             // 
@@ -229,7 +229,7 @@
             this.browse_button.TabIndex = 1;
             this.browse_button.Text = "Browse";
             this.browse_button.UseVisualStyleBackColor = true;
-            this.browse_button.Click += new System.EventHandler(this.browse_button_Click);
+            this.browse_button.Click += new System.EventHandler(this.ButtonBrowse_Click);
             // 
             // bottomButtonBox
             // 
@@ -251,9 +251,9 @@
             this.run_button.TabIndex = 0;
             this.run_button.Text = "Run";
             this.run_button.UseVisualStyleBackColor = true;
-            this.run_button.Click += new System.EventHandler(this.run_button_Click);
-            this.run_button.DragDrop += new System.Windows.Forms.DragEventHandler(this.run_button_DragDrop);
-            this.run_button.DragEnter += new System.Windows.Forms.DragEventHandler(this.scriptFileEntry_DragEnter);
+            this.run_button.Click += new System.EventHandler(this.ButtonRun_Click);
+            this.run_button.DragDrop += new System.Windows.Forms.DragEventHandler(this.ButtonRun_DragDrop);
+            this.run_button.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScriptFileEntry_DragEnter);
             // 
             // stop_button
             // 
@@ -263,7 +263,7 @@
             this.stop_button.TabIndex = 2;
             this.stop_button.Text = "Stop";
             this.stop_button.UseVisualStyleBackColor = true;
-            this.stop_button.Click += new System.EventHandler(this.stop_button_Click);
+            this.stop_button.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // clear_button
             // 
@@ -273,7 +273,7 @@
             this.clear_button.TabIndex = 1;
             this.clear_button.Text = "Clear output";
             this.clear_button.UseVisualStyleBackColor = true;
-            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            this.clear_button.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // logBox
             // 

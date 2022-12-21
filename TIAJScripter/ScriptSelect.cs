@@ -166,7 +166,7 @@ namespace TIAJScripter
             }
             if (select_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                TiaPortalProcess proc = select_dialog.selectedProcess();
+                TiaPortalProcess proc = select_dialog.SelectedProcess();
                 if (proc != null)
                 {
                     WaitConnect wait = new WaitConnect();
@@ -213,7 +213,7 @@ namespace TIAJScripter
 
         }
 
-        private void browse_button_Click(object sender, EventArgs e)
+        private void ButtonBrowse_Click(object sender, EventArgs e)
         {
             if (tiaPortal != null && tiaPortal.Projects.Count == 1)
             {
@@ -310,7 +310,7 @@ namespace TIAJScripter
         }
        
 
-        private void run_button_Click(object sender, EventArgs e)
+        private void ButtonRun_Click(object sender, EventArgs e)
         {
             try
             {
@@ -349,7 +349,7 @@ namespace TIAJScripter
                 consoleText.ScrollToCaret();
             }
         }
-        private void stop_button_Click(object sender, EventArgs e)
+        private void StopButton_Click(object sender, EventArgs e)
         {
             executer?.Abort();
         }
@@ -360,22 +360,22 @@ namespace TIAJScripter
             run_button.Enabled = true;
             executer = null;
         }
-        private void clear_button_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             consoleText.Clear();
         }
 
-        private void btn_connect_Click(object sender, EventArgs e)
+        private void ConnectButton_Click(object sender, EventArgs e)
         {
             ConnectTIA(sender, e);
         }
 
-        private void btn_disconnect_Click(object sender, EventArgs e)
+        private void DisconnectButton_Click(object sender, EventArgs e)
         {
             DisconnectTia(sender, e);
         }
 
-        private void scriptFileEntry_DragEnter(object sender, DragEventArgs e)
+        private void ScriptFileEntry_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;
@@ -383,7 +383,7 @@ namespace TIAJScripter
                 e.Effect = DragDropEffects.None;
         }
 
-        private void scriptFileEntry_DragDrop(object sender, DragEventArgs e)
+        private void ScriptFileEntry_DragDrop(object sender, DragEventArgs e)
         {
             var drop = e.Data.GetData(DataFormats.FileDrop);
             if (drop is string[] paths)
@@ -396,10 +396,10 @@ namespace TIAJScripter
 
         }
 
-        private void run_button_DragDrop(object sender, DragEventArgs e)
+        private void ButtonRun_DragDrop(object sender, DragEventArgs e)
         {
-            scriptFileEntry_DragDrop(sender, e);
-            run_button_Click(sender, null);
+            ScriptFileEntry_DragDrop(sender, e);
+            ButtonRun_Click(sender, null);
         }
     }
 }

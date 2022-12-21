@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -66,10 +66,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Esprima, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Esprima.3.0.0-beta-3\lib\net462\Esprima.dll</HintPath>
+      <HintPath>..\packages\Esprima.3.0.0-beta-9\lib\net462\Esprima.dll</HintPath>
     </Reference>
     <Reference Include="Jint, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jint.3.0.0-beta-2039\lib\net462\Jint.dll</HintPath>
+      <HintPath>..\packages\Jint.3.0.0-beta-2044\lib\net462\Jint.dll</HintPath>
     </Reference>
     <Reference Include="Siemens.Engineering">
       <HintPath>C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17\Siemens.Engineering.dll</HintPath>
@@ -107,6 +107,7 @@
     <Compile Include="OpenessExt\EnumLookup.cs" />
     <Compile Include="OpenessExt\EventHandlerExt.cs" />
     <Compile Include="OpenessExt\HmiScreenExt.cs" />
+    <Compile Include="OpenessExt\MultilingualTextExt.cs" />
     <Compile Include="OpenessExt\TriggerExt.cs" />
     <Compile Include="OpenessExt\UIBaseExt.cs" />
     <Compile Include="PortalSelect.cs">

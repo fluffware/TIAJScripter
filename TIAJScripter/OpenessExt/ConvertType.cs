@@ -1,4 +1,5 @@
 ﻿using Jint.Runtime.Interop;
+using Siemens.Engineering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,9 @@ namespace TIAJScripter.OpenessExt
                     throw new Exception("Color arrays must be of length 3 or 4");
                 }
                 return System.Drawing.Color.FromArgb(a, r, g, b);
+            } else if (type == typeof(MultilingualText))
+            {
+                Console.WriteLine("MultiLingualText");
             }
             else if (type.IsEnum && value is string enum_str)
             {

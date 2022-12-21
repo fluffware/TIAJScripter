@@ -30,6 +30,25 @@ namespace OpenessExt
             }
             return item;
         }
+        public static HmiPolyline CreatePolyline(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiPolyline item = screen.ScreenItems.Create<HmiPolyline>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiLine CreateLine(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiLine item = screen.ScreenItems.Create<HmiLine>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
 
         public static HmiGraphicView CreateGraphicView(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
         {
@@ -53,6 +72,74 @@ namespace OpenessExt
         public static HmiTextBox CreateTextBox(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
         {
             HmiTextBox item = screen.ScreenItems.Create<HmiTextBox>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+        public static HmiIOField CreateIOField(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiIOField item = screen.ScreenItems.Create<HmiIOField>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiToggleSwitch CreateToggleSwitch(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiToggleSwitch item = screen.ScreenItems.Create<HmiToggleSwitch>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiListBox CreateListBox(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiListBox item = screen.ScreenItems.Create<HmiListBox>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiSlider CreateSlider(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiSlider item = screen.ScreenItems.Create<HmiSlider>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiRadioButtonGroup CreateRadioButtonGroup(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiRadioButtonGroup item = screen.ScreenItems.Create<HmiRadioButtonGroup>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
+        public static HmiCheckBoxGroup CreateCheckBoxGroup(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiCheckBoxGroup item = screen.ScreenItems.Create<HmiCheckBoxGroup>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+        public static HmiLabel CreateLabel(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiLabel item = screen.ScreenItems.Create<HmiLabel>(name);
             if (attributes != null)
             {
                 item.SetAttrs(attributes);

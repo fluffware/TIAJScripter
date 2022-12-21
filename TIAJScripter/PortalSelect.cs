@@ -8,12 +8,12 @@ namespace TIAJScripter
 {
     public partial class PortalSelect : Form
     {
-        TIAAsyncWrapper tiaThread;
+        readonly TIAAsyncWrapper tiaThread;
         public PortalSelect(TIAAsyncWrapper thread)
         {
             tiaThread = thread;
             InitializeComponent();
-            listBox1.MouseDoubleClick += listDoubleClick;
+            listBox1.MouseDoubleClick += ListDoubleClick;
         }
 
 
@@ -69,13 +69,13 @@ namespace TIAJScripter
             connectBtn.Enabled = (listBox1.SelectedItem != null);
         }
 
-        public TiaPortalProcess selectedProcess()
+        public TiaPortalProcess SelectedProcess()
         {
             if (listBox1.SelectedItem == null) return null;
             return ((ProcItem)listBox1.SelectedItem).proc;
         }
 
-        private void listDoubleClick(object sender, EventArgs e)
+        private void ListDoubleClick(object sender, EventArgs e)
         {
             connectBtn.PerformClick();
         }

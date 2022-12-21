@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TIAJScripter.OpenessExt;
 
 namespace TIAJScripter
 {
@@ -68,6 +69,7 @@ namespace TIAJScripter
             options.AddExtensionMethods(typeof(DynamizationsExt));
             options.AddExtensionMethods(typeof(TriggerExt));
             options.AddExtensionMethods(typeof(EventHandlerExt));
+            options.AddExtensionMethods(typeof(MultilingualTextExt));
             options.Strict = true;
             string scriptParent = Path.GetDirectoryName(script_file);
             options.EnableModules(scriptParent);
@@ -76,7 +78,11 @@ namespace TIAJScripter
             options.SetTypeConverter(TypeConverterFactory);
             Engine js_engine = new Engine(options);
             js_engine.SetValue("log", new Action<object>(ConsoleLog));
-
+            if (tia_info.Portal.Projects.Count >= 1)
+            {
+                MultilingualTextExt.Project = tia_info.Portal.Projects[0];
+            }
+            
             
             System.Environment.CurrentDirectory = scriptParent;
             JsValue require(string fileName)
@@ -108,8 +114,11 @@ namespace TIAJScripter
             }
             catch (EngineeringTargetInvocationException ex)
             {
-
                 ConsoleError("TIA failure:\n" + ex.ToString() + "\n\n");
+            }
+            catch(JavaScriptException ex)
+            {
+                ConsoleError("JavaScript Exception: " + ex.Message + "\n"+ ex.JavaScriptStackTrace);
             }
             catch (Exception ex)
             {
