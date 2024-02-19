@@ -40,6 +40,16 @@ namespace OpenessExt
             return item;
         }
 
+        public static HmiPolygon CreatePolygon(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
+        {
+            HmiPolygon item = screen.ScreenItems.Create<HmiPolygon>(name);
+            if (attributes != null)
+            {
+                item.SetAttrs(attributes);
+            }
+            return item;
+        }
+
         public static HmiLine CreateLine(this HmiScreen screen, string name, IEnumerable<KeyValuePair<string, object>> attributes = null)
         {
             HmiLine item = screen.ScreenItems.Create<HmiLine>(name);

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using TIAJScripter.OpenessExt;
 
 namespace TIAJScripter
@@ -60,6 +61,20 @@ namespace TIAJScripter
             return new OpenessExt.ConvertType(new DefaultTypeConverter(engine));
         }
         
+        private static XmlNamespaceManager XmlNamespaces(String[] ns_defs)
+        {
+            NameTable nt = new NameTable();
+            var nsm = new XmlNamespaceManager(nt);
+            
+            foreach (String ns_def in ns_defs)
+            {
+                var parts = ns_def.Split(new char[] { ':' }, 2);
+                nsm.AddNamespace(parts[0], parts[1]);
+
+            }
+            return nsm;
+        }
+        delegate XmlNamespaceManager  XmlNamespacesDelegate(string[] message);
         public override object Run()
         {
             cancel = new CancellationTokenSource(); 
@@ -70,6 +85,8 @@ namespace TIAJScripter
             options.AddExtensionMethods(typeof(TriggerExt));
             options.AddExtensionMethods(typeof(EventHandlerExt));
             options.AddExtensionMethods(typeof(MultilingualTextExt));
+            options.AddExtensionMethods(typeof(PlcBlockExt));
+          
             options.Strict = true;
             string scriptParent = Path.GetDirectoryName(script_file);
             options.EnableModules(scriptParent);
@@ -78,6 +95,7 @@ namespace TIAJScripter
             options.SetTypeConverter(TypeConverterFactory);
             Engine js_engine = new Engine(options);
             js_engine.SetValue("log", new Action<object>(ConsoleLog));
+            js_engine.SetValue("XmlNamespaces", (XmlNamespacesDelegate)XmlNamespaces);
             if (tia_info.Portal.Projects.Count >= 1)
             {
                 MultilingualTextExt.Project = tia_info.Portal.Projects[0];
